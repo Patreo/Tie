@@ -1,0 +1,7 @@
+*.pdb
+*.dll
+*.cache
+Tie.Configuration/obj/Debug/Tie.Configuration.csproj.FileListAbsolute.txt
+Tie.Data/obj/Debug/Tie.Data.csproj.FileListAbsolute.txt
+Tie.Web/obj/Debug/Tie.Web.Controls.csproj.FileListAbsolute.txt
+Tie.Core/obj/Debug/Tie.Core.csproj.FileListAbsolute.txt
