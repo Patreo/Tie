@@ -43,13 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionFailedException.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="IDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tie.Configuration\Tie.Configuration.csproj">
-      <Project>{ccc02862-3ace-429b-bc0b-2014c094f021}</Project>
-      <Name>Tie.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Tie.Core\Tie.Core.csproj">
       <Project>{d7193a99-20ae-40c4-a864-8ed33de6c2e4}</Project>
       <Name>Tie.Core</Name>
