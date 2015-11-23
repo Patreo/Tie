@@ -32,8 +32,18 @@ namespace Tie
             }
 
             this.m_Database = ((SqlDatabase)Tie.Data.Provider.DataProviderManager.Provider).Database;
+            this.KeepDatabaseUpdated();
             this.CreatePageTypes(asm);
             this.Route();
+        }
+
+        private void KeepDatabaseUpdated()
+        {
+            if (this.m_Database.Store.Languages.All().Count() == 0)
+            {
+                this.m_Database.Store.Languages.Insert(new { Name = "English", ShortName = "en" });
+                this.m_Database.Store.Languages.Insert(new { Name = "Portuguese", ShortName = "pt" });
+            }
         }
 
         /// <summary>
@@ -116,9 +126,9 @@ namespace Tie
         /// </summary>
         private void Route()
         {
-            RouteManager manager = new RouteManager();
+            RouteManager manager = new RouteManager(RouteTable.Routes);
             manager.Database = this.m_Database;
-            manager.Route(RouteTable.Routes);
+            manager.Route();
         }
     }
 }

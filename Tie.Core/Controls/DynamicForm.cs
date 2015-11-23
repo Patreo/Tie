@@ -84,7 +84,8 @@ namespace Tie.Controls
         {
             base.OnInit(e);
             this.ChildControlsCreated = true;
-        }
+            this.Page.RegisterRequiresControlState(this);
+        }      
 
         /// <summary>
         /// Raises the <see cref="E:System.Web.UI.Control.PreRender" /> event.
@@ -117,7 +118,7 @@ namespace Tie.Controls
                 }
 
                 Tie.Data.Store.Page page = this.Database.Store.Pages.All()
-                    .Where((item) => item.PageTypeID == this.pageType.ID && item.Slug == strPath)
+                    .Where((item) => item.PageTypeID == this.pageType.ID && item.Slug.ToLower() == strPath.ToLower())
                     .FirstOrDefault();
 
                 Tie.Data.Store.PageProperty pageProperty = this.Database.Store.PageProperties.All()
@@ -137,5 +138,7 @@ namespace Tie.Controls
                 this.Controls.Add(placeHolder);
             }
         }
+
+    
     }
 }

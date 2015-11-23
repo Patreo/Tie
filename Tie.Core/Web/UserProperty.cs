@@ -15,8 +15,8 @@ namespace Tie.Web
         /// </value>
         public virtual string Label
         {
-            get;
-            set;
+            get { return ViewState["Value"] as String; }
+            set { ViewState["Value"] = value; }
         }
 
         /// <summary>
@@ -27,8 +27,8 @@ namespace Tie.Web
         /// </value>
         public virtual string Value
         {
-            get;
-            set;
+            get { return ViewState["Value"] as String; }
+            set { ViewState["Value"] = value; }
         }
 
         /// <summary>
@@ -39,8 +39,8 @@ namespace Tie.Web
         /// </value>
         public virtual string Name
         {
-            get;
-            set;
+            get { return ViewState["Value"] as String; }
+            set { ViewState["Value"] = value; }
         }
     }
 }
