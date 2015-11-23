@@ -37,6 +37,9 @@ namespace Tie
             this.Route();
         }
 
+        /// <summary>
+        /// Keeps the database updated.
+        /// </summary>
         private void KeepDatabaseUpdated()
         {
             if (this.m_Database.Store.Languages.All().Count() == 0)
@@ -96,7 +99,7 @@ namespace Tie
                 {
                     foreach (PropertyAttribute attr in propertyInfo.GetCustomAttributes(typeof(PropertyAttribute), false))
                     {
-                        PropertyType propertyType = this.m_Database.Store.PropertyTypes.All().Where((item) => item.PageTypeID == (int)PageTypeID && item.Name == propertyInfo.Name).FirstOrDefault();
+                        PropertyType propertyType = DataStoreHelper.Instance.GetPropertyTypes((int)PageTypeID, propertyInfo.Name);
 
                         if (String.IsNullOrEmpty(attr.Editor))
                         {
@@ -109,7 +112,7 @@ namespace Tie
 
                         if (propertyType == null)
                         {
-                            this.m_Database.Store.PropertyTypes.Insert(new { PageTypeID = (int)PageTypeID, Name = propertyInfo.Name, Title = attr.Title, Editor = strEditorUrl,  QualifiedName = propertyInfo.PropertyType.FullName });
+                            this.m_Database.Store.PropertyTypes.Insert(new { PageTypeID = (int)PageTypeID, Name = propertyInfo.Name, Title = attr.Title, Editor = strEditorUrl, QualifiedName = propertyInfo.PropertyType.FullName });
                         }
                         else
                         {
@@ -117,7 +120,7 @@ namespace Tie
                         }
                     }
                 }
-              
+
             }
         }
 

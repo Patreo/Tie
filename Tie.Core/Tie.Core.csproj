@@ -69,11 +69,13 @@
     <Compile Include="Attributes\Property.cs" />
     <Compile Include="Controls\DynamicForm.cs" />
     <Compile Include="Data\DataStore.cs" />
+    <Compile Include="Data\DataStoreHelper.cs" />
     <Compile Include="Data\Provider\ConnectionConfigSection.cs" />
     <Compile Include="Data\Provider\DataProviderBase.cs" />
     <Compile Include="Data\Provider\DataProviderCollection.cs" />
     <Compile Include="Data\Provider\DataProviderManager.cs" />
     <Compile Include="Data\SqlDatabase.cs" />
+    <Compile Include="Data\Store\PageField.cs" />
     <Compile Include="Data\Store\PageType.cs" />
     <Compile Include="Data\Store\PropertyType.cs" />
     <Compile Include="Web\Caching\CacheManager.cs" />

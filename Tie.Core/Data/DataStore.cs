@@ -33,6 +33,18 @@ namespace Tie.Data
         }
 
         /// <summary>
+        /// Gets or sets the page types.
+        /// </summary>
+        /// <value>
+        /// The page types.
+        /// </value>
+        public Table<PageField> PageFields
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets the languages.
         /// </summary>
         /// <value>

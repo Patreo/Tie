@@ -8,6 +8,27 @@ namespace Tie.Core
     public class Convert
     {
         /// <summary>
+        /// Determines whether this instance [can change type] the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="targetType">Type of the target.</param>
+        /// <returns>
+        ///   <c>true</c> if this instance [can change type] the specified value; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool CanChangeType(object value, Type targetType)
+        {
+            try
+            {
+                System.Convert.ChangeType(value, targetType);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// To the t.
         /// </summary>
         /// <typeparam name="T"></typeparam>

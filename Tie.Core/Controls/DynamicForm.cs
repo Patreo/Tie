@@ -104,41 +104,34 @@ namespace Tie.Controls
         {
             foreach (Tie.Data.Store.PropertyType propertyType in this.propertyTypes)
             {
-                UserProperty control = (UserProperty)Page.LoadControl(propertyType.Editor);
+                string strPath = HttpContext.Current.Request.Path;
+                if (strPath.StartsWith("/") == true)
+                {
+                    strPath = strPath.Substring(1, strPath.Length - 1);
+                }
 
+                Tie.Data.Store.Page page = DataStoreHelper.Instance.GetPageBySlug(pageType.ID, strPath);
+                Tie.Data.Store.PageProperty pageProperty = DataStoreHelper.Instance.GetPageProperty(page.ID, propertyType.ID);
+
+                if (pageProperty != null)
+                {
+                    throw new Exception("Page Property not founded or deleted.");
+                }
+
+                UserProperty control = (UserProperty)Page.LoadControl(propertyType.Editor);
                 if (control == null)
                 {
                     throw new Exception(propertyType.Editor + " not founded.");
                 }
 
-                string strPath = HttpContext.Current.Request.Path;
-                if (strPath.StartsWith("/"))
-                {
-                    strPath = strPath.Substring(1, strPath.Length - 1);
-                }
-
-                Tie.Data.Store.Page page = this.Database.Store.Pages.All()
-                    .Where((item) => item.PageTypeID == this.pageType.ID && item.Slug.ToLower() == strPath.ToLower())
-                    .FirstOrDefault();
-
-                Tie.Data.Store.PageProperty pageProperty = this.Database.Store.PageProperties.All()
-                    .Where((item) => item.PageID == page.ID && item.PropertyTypeID == propertyType.ID)
-                    .FirstOrDefault();
-
                 control.Name = propertyType.Name;
                 control.Label = propertyType.Title;
-
-                if (pageProperty != null)
-                {
-                    control.Value = pageProperty.Content ?? "";
-                }
-
+                control.Value = pageProperty.Content ?? "";
+        
                 PlaceHolder placeHolder = new PlaceHolder();
                 placeHolder.Controls.Add(control);
                 this.Controls.Add(placeHolder);
             }
         }
-
-    
     }
 }
